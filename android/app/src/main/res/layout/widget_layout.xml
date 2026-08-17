@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello Widget!"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+    android:id="@+id/widget_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:text="Open App" />
+
+</LinearLayout>
+
+
+<!--    Yes. First, there is **one typo** in your XML:-->
+
+<!--    `<LinerLayout>` ❌ should be `<LinearLayout>` ✅-->
+
+<!--    Now let's understand it **line by line**.-->
+
+<!--    ### 1. XML declaration-->
+
+<!--    ```xml-->
+<!--    <?xml version="1.0" encoding="utf-8" ?>-->
+<!--    ```-->
+
+<!--    * `<?xml ... ?>` → tells Android that this file is an **XML document**.-->
+<!--    * `version="1.0"` → XML version being used.-->
+<!--    * `encoding="utf-8"` → tells XML to use UTF-8 character encoding.-->
+<!--    * `?>` → ends the XML declaration.-->
+
+<!--    This is basically metadata about the XML file.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 2. Root layout-->
+
+<!--    ```xml-->
+<!--    <LinearLayout-->
+<!--    ```-->
+
+<!--    `LinearLayout` is a **container**.-->
+
+<!--    Think of it as a box that can contain other UI elements:-->
+
+<!--    ```text-->
+<!--    LinearLayout-->
+<!--    │-->
+<!--    ├── TextView-->
+<!--    │-->
+<!--    └── Button-->
+<!--    ```-->
+
+<!--    The important thing is that `LinearLayout` arranges its children **in a line**.-->
+
+<!--    You specify whether that line is:-->
+
+<!--    * `vertical` → top to bottom-->
+<!--    * `horizontal` → left to right-->
+
+<!--    Your code uses vertical.-->
+
+<!--    ⚠️ Your original says `LinerLayout`, which is invalid. It must be:-->
+
+<!--    ```xml-->
+<!--    <LinearLayout-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 3. Android XML namespace-->
+
+<!--    ```xml-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    ```-->
+
+<!--    This is very important.-->
+
+<!--    `xmlns:android` defines the **Android XML namespace**.-->
+
+<!--    Because of this, Android understands attributes such as:-->
+
+<!--    ```xml-->
+<!--    android:layout_width-->
+<!--    android:layout_height-->
+<!--    android:text-->
+<!--    android:gravity-->
+<!--    ```-->
+
+<!--    You can think of it as saying:-->
+
+<!--    > "The attributes starting with `android:` belong to Android."-->
+
+<!--    The URL doesn't mean your app is making an internet request. It's simply the namespace identifier.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 4. Width of the LinearLayout-->
+
+<!--    ```xml-->
+<!--    android:layout_width="match_parent"-->
+<!--    ```-->
+
+<!--    `layout_width` → controls the width.-->
+
+<!--    `match_parent` → make the LinearLayout as wide as its parent allows.-->
+
+<!--    So if the screen is:-->
+
+<!--    ```text-->
+<!--    ┌─────────────────────────┐-->
+<!--    │                         │-->
+<!--    │                         │-->
+<!--    │                         │-->
+<!--    └─────────────────────────┘-->
+<!--    ```-->
+
+<!--    The LinearLayout takes the entire available width.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 5. Height of the LinearLayout-->
+
+<!--    ```xml-->
+<!--    android:layout_height="match_parent"-->
+<!--    ```-->
+
+<!--    Same idea, but for height.-->
+
+<!--    `match_parent` → take all available height.-->
+
+<!--    So your root layout becomes essentially the **whole widget layout area**.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 6. Orientation-->
+
+<!--    ```xml-->
+<!--    android:orientation="vertical"-->
+<!--    ```-->
+
+<!--    This tells `LinearLayout` how to arrange its children.-->
+
+<!--    `vertical` means:-->
+
+<!--    ```text-->
+<!--    TextView-->
+<!--    ↓-->
+<!--    Button-->
+<!--    ```-->
+
+<!--    If you used:-->
+
+<!--    ```xml-->
+<!--    android:orientation="horizontal"-->
+<!--    ```-->
+
+<!--    you would get:-->
+
+<!--    ```text-->
+<!--    TextView   Button-->
+<!--    ```-->
+
+<!--    So in your widget:-->
+
+<!--    ```text-->
+<!--    ┌─────────────────────┐-->
+<!--    │                     │-->
+<!--    │    Hello Widget!    │-->
+<!--    │                     │-->
+<!--    │     [Open App]      │-->
+<!--    │                     │-->
+<!--    └─────────────────────┘-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 7. Gravity-->
+
+<!--    ```xml-->
+<!--    android:gravity="center"-->
+<!--    ```-->
+
+<!--    This controls how the **children inside the LinearLayout** are positioned.-->
+
+<!--    `center` means center them.-->
+
+<!--    So instead of:-->
+
+<!--    ```text-->
+<!--    ┌─────────────────────┐-->
+<!--    │ Hello Widget!       │-->
+<!--    │ [Open App]          │-->
+<!--    │                     │-->
+<!--    └─────────────────────┘-->
+<!--    ```-->
+
+<!--    you get approximately:-->
+
+<!--    ```text-->
+<!--    ┌─────────────────────┐-->
+<!--    │                     │-->
+<!--    │    Hello Widget!    │-->
+<!--    │     [Open App]      │-->
+<!--    │                     │-->
+<!--    └─────────────────────┘-->
+<!--    ```-->
+
+<!--    Important distinction:-->
+
+<!--    * `android:gravity` → positions the **content/children inside this view**-->
+<!--    * `android:layout_gravity` → positions **this view inside its parent**-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 8. Padding-->
+
+<!--    ```xml-->
+<!--    android:padding="16dp">-->
+<!--    ```-->
+
+<!--    `padding` creates space **inside** the LinearLayout around its content.-->
+
+<!--    `16dp` means 16 density-independent pixels.-->
+
+<!--    Conceptually:-->
+
+<!--    ```text-->
+<!--    ┌─────────────────────────┐-->
+<!--    │ ← 16dp →                │-->
+<!--    │                         │-->
+<!--    │      Hello Widget!      │-->
+<!--    │                         │-->
+<!--    └─────────────────────────┘-->
+<!--    ```-->
+
+<!--    The `>` ends the opening `LinearLayout` tag.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    # 9. TextView-->
+
+<!--    ```xml-->
+<!--    <TextView-->
+<!--    ```-->
+
+<!--    `TextView` is an Android UI component used to **display text**.-->
+
+<!--    In your case:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 10. TextView width-->
+
+<!--    ```xml-->
+<!--    android:layout_width="wrap_content"-->
+<!--    ```-->
+
+<!--    `wrap_content` means:-->
+
+<!--    > Make the view only as wide as its content requires.-->
+
+<!--    For:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+<!--    ```-->
+
+<!--    the TextView will be roughly the width required to display that text.-->
+
+<!--    Compare:-->
+
+<!--    ```xml-->
+<!--    match_parent-->
+<!--    ```-->
+
+<!--    → entire available width.-->
+
+<!--    ```xml-->
+<!--    wrap_content-->
+<!--    ```-->
+
+<!--    → only what's needed.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 11. TextView height-->
+
+<!--    ```xml-->
+<!--    android:layout_height="wrap_content"-->
+<!--    ```-->
+
+<!--    Same concept for height.-->
+
+<!--    The TextView becomes only as tall as necessary to display the text.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 12. Text-->
+
+<!--    ```xml-->
+<!--    android:text="Hello Widget!"-->
+<!--    ```-->
+
+<!--    This specifies what the TextView displays.-->
+
+<!--    The result is:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 13. Text size-->
+
+<!--    ```xml-->
+<!--    android:textSize="20sp"-->
+<!--    ```-->
+
+<!--    Sets the text size to `20sp`.-->
+
+<!--    `sp` means **scale-independent pixels**.-->
+
+<!--    `sp` is normally used for text sizes because it respects the user's font-size/accessibility settings.-->
+
+<!--    So:-->
+
+<!--    ```xml-->
+<!--    20sp-->
+<!--    ```-->
+
+<!--    means approximately a 20sp text size.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 14. Text style-->
+
+<!--    ```xml-->
+<!--    android:textStyle="bold" />-->
+<!--    ```-->
+
+<!--    Makes the text bold.-->
+
+<!--    Without it:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+<!--    ```-->
+
+<!--    With it:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+<!--    ```-->
+
+<!--    but rendered with a heavier/bolder font.-->
+
+<!--    The `/ >` combination:-->
+
+<!--    ```xml-->
+<!--    />-->
+<!--    ```-->
+
+<!--    means:-->
+
+<!--    > This `TextView` has no child elements, so close it here.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    # 15. Button-->
+
+<!--    ```xml-->
+<!--    <Button-->
+<!--    ```-->
+
+<!--    Creates an Android `Button`.-->
+
+<!--    Your widget will show:-->
+
+<!--    ```text-->
+<!--    [ Open App ]-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 16. Button ID-->
+
+<!--    ```xml-->
+<!--    android:id="@+id/widget_button"-->
+<!--    ```-->
+
+<!--    This gives the Button an ID:-->
+
+<!--    ```text-->
+<!--    widget_button-->
+<!--    ```-->
+
+<!--    The `@+id/` part means:-->
+
+<!--    > Create a new Android resource ID named `widget_button`.-->
+
+<!--    Later, Android code can refer to this button using its ID.-->
+
+<!--    For example:-->
+
+<!--    ```kotlin-->
+<!--    R.id.widget_button-->
+<!--    ```-->
+
+<!--    This becomes particularly important because you want the button to perform an action when the user taps it.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 17. Button width-->
+
+<!--    ```xml-->
+<!--    android:layout_width="wrap_content"-->
+<!--    ```-->
+
+<!--    The button will be only as wide as necessary for its content:-->
+
+<!--    ```text-->
+<!--    ┌──────────────┐-->
+<!--    │   Open App   │-->
+<!--    └──────────────┘-->
+<!--    ```-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 18. Button height-->
+
+<!--    ```xml-->
+<!--    android:layout_height="wrap_content"-->
+<!--    ```-->
+
+<!--    The button takes only the height it needs.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 19. Margin-->
+
+<!--    ```xml-->
+<!--    android:layout_marginTop="12dp"-->
+<!--    ```-->
+
+<!--    Creates **12dp of space above the Button**.-->
+
+<!--    So:-->
+
+<!--    ```text-->
+<!--    Hello Widget!-->
+
+
+<!--    12dp-->
+
+
+<!--    [ Open App ]-->
+<!--    ```-->
+
+<!--    This is different from padding.-->
+
+<!--    **Padding:**-->
+
+<!--    ```text-->
+<!--    View-->
+<!--    ┌─────────────────┐-->
+<!--    │   content       │-->
+<!--    └─────────────────┘-->
+<!--    ```-->
+
+<!--    Space **inside** the view.-->
+
+<!--    **Margin:**-->
+
+<!--    ```text-->
+<!--    View A-->
+
+<!--    ← space →-->
+
+<!--    View B-->
+<!--    ```-->
+
+<!--    Space **outside** the view.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ### 20. Button text-->
+
+<!--    ```xml-->
+<!--    android:text="Open App" />-->
+<!--    ```-->
+
+<!--    Sets the text displayed on the button:-->
+
+<!--    ```text-->
+<!--    ┌──────────────┐-->
+<!--    │   Open App   │-->
+<!--    └──────────────┘-->
+<!--    ```-->
+
+<!--    Again, `/>` closes the Button because it doesn't contain any child elements.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    # 21. Closing LinearLayout-->
+
+<!--    ```xml-->
+<!--</LinearLayout>-->
+<!--```-->
+
+<!--This closes the root `LinearLayout`.-->
+
+<!--Everything between:-->
+
+<!--```xml-->
+<!--<LinearLayout>-->
+<!--    ```-->
+
+<!--    and:-->
+
+<!--    ```xml-->
+<!--</LinearLayout>-->
+<!--```-->
+
+<!--is a **child of the LinearLayout**.-->
+
+<!--So the hierarchy is:-->
+
+<!--```text-->
+<!--LinearLayout-->
+<!--│-->
+<!--├── TextView-->
+<!--│   ├── Hello Widget!-->
+<!--│-->
+<!--└── Button-->
+<!--├── Open App-->
+<!--```-->
+
+<!--And because:-->
+
+<!--```xml-->
+<!--android:orientation="vertical"-->
+<!--```-->
+
+<!--the final layout is:-->
+
+<!--```text-->
+<!--┌─────────────────────────────┐-->
+<!--│                             │-->
+<!--│                             │-->
+<!--│       Hello Widget!         │-->
+<!--│                             │-->
+<!--│        ┌─────────┐          │-->
+<!--│        │ Open App│          │-->
+<!--│        └─────────┘          │-->
+<!--│                             │-->
+<!--│                             │-->
+<!--└─────────────────────────────┘-->
+<!--```-->
+
+<!--### The most important concepts to understand now-->
+
+<!--| XML            | Meaning                          |-->
+<!--| &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; | &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; |-->
+<!--| `LinearLayout` | Container for other views        |-->
+<!--| `orientation`  | Direction of children            |-->
+<!--| `vertical`     | Top → bottom                     |-->
+<!--| `horizontal`   | Left → right                     |-->
+<!--| `match_parent` | Take available space             |-->
+<!--| `wrap_content` | Take only required space         |-->
+<!--| `gravity`      | Position content inside the view |-->
+<!--| `padding`      | Space inside the view            |-->
+<!--| `margin`       | Space outside the view           |-->
+<!--| `TextView`     | Displays text                    |-->
+<!--| `Button`       | Clickable button                 |-->
+<!--| `id`           | Unique identifier for a view     |-->
+<!--| `dp`           | Size unit for layouts            |-->
+<!--| `sp`           | Size unit for text               |-->
+
+<!--And **one correction before you use this file**:-->
+
+<!--```xml-->
+<!--<LinerLayout-->
+<!--```-->
+
+<!--must be:-->
+
+<!--```xml-->
+<!--<LinearLayout-->
+<!--```-->
+
+<!--Otherwise Android will not recognize the root layout.-->

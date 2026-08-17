@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:minWidth="180dp"
+    android:minHeight="100dp"
+
+    android:initialLayout="@layout/widget_layout"
+
+    android:resizeMode="horizontal|vertical"
+
+    android:widgetCategory="home_screen" />
+
+
+
+
+<!--    Absolutely. Let's go **line by line**, just like the previous XML.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ## 1. XML declaration-->
+
+<!--    ```xml-->
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--    ```-->
+
+<!--    This tells Android that this file is an **XML document**.-->
+
+<!--    * `version="1.0"` → XML version.-->
+<!--    * `encoding="utf-8"` → character encoding.-->
+<!--    * `?>` → ends the XML declaration.-->
+
+<!--    This is standard XML and isn't specific to widgets.-->
+
+<!--    -&#45;&#45;-->
+
+<!--    ## 2. Start the App Widget Provider-->
+
+<!--    ```xml-->
+<!--<appwidget-provider-->
+<!--    ```-->
+
+<!--    This is the **root element** of the widget configuration.-->
+
+<!--    `appwidget-provider` tells Android:-->
+
+<!--    > "This XML file contains the configuration for an App Widget."-->
+
+<!--    Compare this with your previous file:-->
+
+<!--    xml-->
+<!--<LinearLayout>-->
+
+<!--`LinearLayout` → describes the **UI structure**.-->
+
+<!--`appwidget-provider` → describes the **widget configuration**.-->
+
+<!--Think of it like:-->
+
+<!--```text-->
+<!--widget_layout.xml-->
+<!--↓-->
+<!--"What does the widget look like?"-->
+
+<!--widget_info.xml-->
+<!--↓-->
+<!--"How should Android treat the widget?"-->
+<!--```-->
+
+<!-- -&#45;&#45;-->
+
+<!--## 3. Android XML namespace-->
+
+<!--```xml-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--```-->
+
+<!--This tells XML what the `android:` prefix means.-->
+
+<!--For example:-->
+
+<!--```xml-->
+<!--android:minWidth-->
+<!--android:minHeight-->
+<!--android:initialLayout-->
+<!--android:resizeMode-->
+<!--```-->
+
+<!--All of these use the `android:` namespace.-->
+
+<!--The URL:-->
+
+<!--```text-->
+<!--http://schemas.android.com/apk/res/android-->
+<!--```-->
+
+<!--is **not an internet request**.-->
+
+<!--It's simply Android's XML namespace identifier.-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 4. Minimum width-->
+
+<!--```xml-->
+<!--android:minWidth="180dp"-->
+<!--```-->
+
+<!--This tells Android:-->
+
+<!--&gt; The widget's minimum requested width is **180dp**.-->
+
+<!--`minWidth` → minimum width.-->
+
+<!--`180dp` → 180 density-independent pixels.-->
+
+<!--For example:-->
+
+<!--```text-->
+<!--180dp minimum-->
+<!--←──────────────────────→-->
+
+<!--┌──────────────────────┐-->
+<!--│                      │-->
+<!--│       Widget         │-->
+<!--│                      │-->
+<!--└──────────────────────┘-->
+<!--```-->
+
+<!--This doesn't necessarily mean the widget will **always** be exactly 180dp wide.-->
+
+<!--It means Android should not make the widget smaller than the requested minimum when laying it out.-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 5. Minimum height-->
+
+<!--```xml-->
+<!--android:minHeight="100dp"-->
+<!--```-->
+
+<!--Same concept, but vertically.-->
+
+<!--The widget requests at least:-->
+
+<!--```text-->
+<!--100dp-->
+<!--```-->
+
+<!--of height.-->
+
+<!--So your minimum requested widget size is:-->
+
+<!--```text-->
+<!--180dp-->
+<!--←─────────────────→-->
+<!--┌─────────────────┐-->
+<!--│                 │-->
+<!--│                 │ 100dp-->
+<!--│                 │-->
+<!--└─────────────────┘-->
+<!--```-->
+
+<!--Together:-->
+
+<!--```xml-->
+<!--android:minWidth="180dp"-->
+<!--android:minHeight="100dp"-->
+<!--```-->
+
+<!--means approximately:-->
+
+<!--&gt; "My widget needs at least 180dp × 100dp."-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 6. Initial layout-->
+
+<!--```xml-->
+<!--android:initialLayout="@layout/widget_layout"-->
+<!--```-->
+
+<!--This is one of the **most important lines**.-->
+
+<!--It tells Android:-->
+
+<!--&gt; "When this widget is created, use `widget_layout.xml` as its initial UI."-->
+
+<!--Let's break it down.-->
+
+<!--### `android:initialLayout`-->
+
+<!--Means:-->
+
+<!--&gt; The XML layout that Android should initially display for this widget.-->
+
+<!--### `@layout/widget_layout`-->
+
+<!--This is an Android resource reference.-->
+
+<!--It means:-->
+
+<!--```text-->
+<!--res/-->
+<!--└── layout/-->
+<!--└── widget_layout.xml-->
+<!--```-->
+
+<!--So:-->
+
+<!--```xml-->
+<!--@layout/widget_layout-->
+<!--```-->
+
+<!--points to:-->
+
+<!--```text-->
+<!--res/layout/widget_layout.xml-->
+<!--```-->
+
+<!--And that is the layout you created earlier:-->
+
+<!--```text-->
+<!--LinearLayout-->
+<!--│-->
+<!--├── TextView-->
+<!--│      "Hello Widget!"-->
+<!--│-->
+<!--└── Button-->
+<!--"Open App"-->
+<!--```-->
+
+<!--So the connection is:-->
+
+<!--```text-->
+<!--widget_info.xml-->
+<!--│-->
+<!--│ initialLayout-->
+<!--↓-->
+<!--widget_layout.xml-->
+<!--│-->
+<!--↓-->
+<!--┌──────────────────────┐-->
+<!--│    Hello Widget!     │-->
+<!--│                      │-->
+<!--│     [ Open App ]     │-->
+<!--└──────────────────────┘-->
+<!--```-->
+
+<!--This is how Android knows **what UI to initially put inside the widget**.-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 7. Resize mode-->
+
+<!--```xml-->
+<!--android:resizeMode="horizontal|vertical"-->
+<!--```-->
+
+<!--This tells Android whether the user can **resize the widget** on the home screen.-->
+
+<!--You have:-->
+
+<!--```text-->
+<!--horizontal|vertical-->
+<!--```-->
+
+<!--The `|` means **OR**.-->
+
+<!--So you're allowing resizing in:-->
+
+<!--```text-->
+<!--horizontal-->
+<!--+-->
+<!--vertical-->
+<!--```-->
+
+<!--Therefore the user can resize the widget in **both directions**.-->
+
+<!--For example:-->
+
+<!--```text-->
+<!--Original:-->
+
+<!--┌────────────────────┐-->
+<!--│   Hello Widget!    │-->
+<!--│    [Open App]      │-->
+<!--└────────────────────┘-->
+
+
+<!--User makes it wider:-->
+
+<!--┌──────────────────────────────┐-->
+<!--│       Hello Widget!          │-->
+<!--│        [Open App]            │-->
+<!--└──────────────────────────────┘-->
+
+
+<!--User makes it taller:-->
+
+<!--┌────────────────────┐-->
+<!--│                    │-->
+<!--│   Hello Widget!    │-->
+<!--│                    │-->
+<!--│    [Open App]      │-->
+<!--│                    │-->
+<!--│                    │-->
+<!--└────────────────────┘-->
+<!--```-->
+
+<!--There are commonly three useful values:-->
+
+<!--```text-->
+<!--horizontal-->
+<!--```-->
+
+<!--→ resize horizontally only.-->
+
+<!--```text-->
+<!--vertical-->
+<!--```-->
+
+<!--→ resize vertically only.-->
+
+<!--```text-->
+<!--horizontal|vertical-->
+<!--```-->
+
+<!--→ resize both horizontally and vertically.-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 8. Widget category-->
+
+<!--```xml-->
+<!--android:widgetCategory="home_screen"-->
+<!--```-->
+
+<!--This tells Android **where the widget is intended to be placed**.-->
+
+<!--`home_screen` means:-->
+
+<!--&gt; This widget can be placed on the Android home screen.-->
+
+<!--So when the user opens the widget picker, Android knows this is a **home-screen widget**.-->
+
+<!-- -&#45;&#45;-->
+
+<!--# 9. Closing the element-->
+
+<!--```xml-->
+<!--/>-->
+<!--```-->
+
+<!--This closes the `appwidget-provider` element.-->
+
+<!--Notice that you didn't write:-->
+
+<!--```xml-->
+<!--</appwidget-provider>-->
+<!--    ```-->
+
+<!--    because this element doesn't contain child elements.-->
+
+<!--    Instead, you use:-->
+
+<!--    ```xml-->
+<!--    />-->
+<!--    ```-->
+
+<!--    This means:-->
+
+<!--    > "The element starts here and ends here."-->
+
+<!--    -&#45;&#45;-->
+
+<!--    # Putting the whole thing together-->
+
+<!--    Your configuration says:-->
+
+<!--    ```text-->
+<!--    This is an Android App Widget-->
+<!--    │-->
+<!--    ├── Minimum width: 180dp-->
+<!--    │-->
+<!--    ├── Minimum height: 100dp-->
+<!--    │-->
+<!--    ├── Initial UI:-->
+<!--    │      widget_layout.xml-->
+<!--    │-->
+<!--    ├── Can resize:-->
+<!--    │      horizontally-->
+<!--    │      vertically-->
+<!--    │-->
+<!--    └── Can be placed on:-->
+<!--    Home screen-->
+<!--    ```-->
+
+<!--    So you can think of the two XML files like this:-->
+
+<!--    ```text-->
+<!--    YOUR WIDGET-->
+<!--    │-->
+<!--    ┌───────────┴───────────┐-->
+<!--    │                       │-->
+<!--    ↓                       ↓-->
+<!--    widget_info.xml         widget_layout.xml-->
+<!--    "Widget rules"          "Widget UI"-->
+<!--    │                       │-->
+<!--    ├─ minWidth             ├─ TextView-->
+<!--    ├─ minHeight            ├─ Button-->
+<!--    ├─ resizeMode           ├─ padding-->
+<!--    └─ category             └─ alignment-->
+<!--    ```-->
+
+<!--    **The important distinction:** `widget_info.xml` does **not** create the visual `TextView` or `Button`. It tells Android **how the widget should behave** and points Android to `widget_layout.xml`, which contains the actual visual UI.-->
